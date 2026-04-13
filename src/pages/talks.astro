@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const talks = [
+  {
+    title: 'Avengers Assemble: Threat Modeling Kubernetes Clusters',
+    event: 'KubeCon + CloudNativeCon NA 2024',
+    cospeaker: 'Jamal Arif',
+    summary: 'Practical threat modeling techniques for Kubernetes clusters, drawing on real-world scenarios to help teams identify and mitigate risks.',
+    videoUrl: 'https://www.youtube.com/watch?v=F_dLChNtmRg',
+    videoId: 'F_dLChNtmRg',
+    tag: 'KubeCon',
+    tagClass: 'tag-kubecon',
+  },
+  {
+    title: 'Secure Your Healthcare Generative AI Workloads on Amazon EKS (DAP221)',
+    event: 'AWS re:Inforce 2024',
+    cospeaker: null,
+    summary: 'Working backwards from healthcare data protection outcomes to build secure generative AI workloads on Amazon EKS.',
+    videoUrl: 'https://www.youtube.com/watch?v=Q2uiJultkfs',
+    videoId: 'Q2uiJultkfs',
+    tag: 're:Inforce',
+    tagClass: 'tag-reinforce',
+  },
+  {
+    title: 'Optimizing Your Amazon ECS Application Networking Strategy (CNS327)',
+    event: 'AWS re:Invent 2025',
+    cospeaker: 'Ashok Srirama',
+    summary: 'Deep dive into connecting microservices with ECS Service Connect and Amazon VPC Lattice — service discovery, routing, load balancing, and encryption.',
+    videoUrl: 'https://serverlessland.com/reinvent2025/cns327',
+    videoId: null,
+    thumbnail: '/images/reinvent-2025-cns327.png',
+    tag: 're:Invent',
+    tagClass: 'tag-reinvent',
+  },
+  {
+    title: 'The Shapeshifting Application: Architecture That Transforms Across AWS (CNS426)',
+    event: 'AWS re:Invent 2025',
+    cospeaker: null,
+    summary: 'Architectural patterns enabling true deployment flexibility — applications that flow seamlessly between Lambda, ECS, and EKS.',
+    videoUrl: 'https://www.youtube.com/watch?v=0z1rxGlhIkk',
+    videoId: '0z1rxGlhIkk',
+    tag: 're:Invent',
+    tagClass: 'tag-reinvent',
+  },
+];
+---
+
+<BaseLayout title="Talks">
+  <div class="container">
+    <div class="page-header">
+      <h1>Conference Talks <span class="count">{talks.length}</span></h1>
+      <p>Presentations at KubeCon, AWS re:Invent, and re:Inforce</p>
+    </div>
+
+    <div class="talks-grid">
+      {talks.map((talk) => (
+        <a href={talk.videoUrl} target="_blank" rel="noopener noreferrer" class="talk-card">
+          <div class="talk-thumb">
+            {talk.videoId ? (
+              <img
+                src={`https://img.youtube.com/vi/${talk.videoId}/mqdefault.jpg`}
+                alt={`Thumbnail for ${talk.title}`}
+                loading="lazy"
+              />
+            ) : talk.thumbnail ? (
+              <img
+                src={talk.thumbnail}
+                alt={`Thumbnail for ${talk.title}`}
+                loading="lazy"
+              />
+            ) : (
+              <div class="thumb-placeholder">📍</div>
+            )}
+            {(talk.videoId || talk.thumbnail) && <div class="play-icon">▶</div>}
+          </div>
+          <div class="talk-body">
+            <div class="meta">
+              <span class={`tag ${talk.tagClass}`}>{talk.tag}</span>
+              <span class="event-badge">📍 {talk.event}</span>
+              {talk.cospeaker && <span class="event-badge">👥 with {talk.cospeaker}</span>}
+            </div>
+            <h3>{talk.title}</h3>
+            <p class="summary">{talk.summary}</p>
+            <div class="card-footer">
+              {talk.videoId ? 'Watch on YouTube' : 'View Session'} <span class="arrow">→</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .talks-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: 5rem;
+  }
+
+  .talk-card {
+    display: flex;
+    gap: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    transition: all var(--transition);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .talk-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .talk-card:hover h3 { color: var(--accent-light); }
+
+  .talk-thumb {
+    position: relative;
+    flex-shrink: 0;
+    width: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-subtle);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .talk-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+  }
+
+  .talk-card:hover .talk-thumb img {
+    transform: scale(1.05);
+  }
+
+  .play-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .talk-card:hover .play-icon { opacity: 1; }
+
+  .thumb-placeholder {
+    font-size: 2rem;
+    color: var(--text-muted);
+  }
+
+  .talk-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .talk-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    transition: color var(--transition);
+  }
+
+  @media (max-width: 680px) {
+    .talk-card {
+      flex-direction: column;
+    }
+    .talk-thumb {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skills = [
+  { icon: '⎈', name: 'Kubernetes & Amazon EKS' },
+  { icon: '📦', name: 'Amazon ECS & Fargate' },
+  { icon: '🦎', name: 'Bottlerocket OS' },
+  { icon: '🧠', name: 'Distributed Inference' },
+  { icon: '🏭', name: 'Self Managed AI Infrastructure' },
+  { icon: '🤖', name: 'Agentic AI Workloads' },
+  { icon: '🔒', name: 'Container Security' },
+  { icon: '🌐', name: 'Service Mesh & Networking' },
+
+];
+
+---
+
+<BaseLayout title="About">
+  <div class="container">
+    <div class="page-header">
+      <h1>About Me 👋</h1>
+      <p>A bit about who I am and what I do</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-intro">
+        <p>
+          I'm a <strong>Sr. Specialist Solutions Architect</strong> at <strong>Amazon Web Services</strong> with 9+ years of experience in cloud computing and distributed systems.
+        </p>
+        <p>
+          In my role as a subject matter expert in containers, machine learning infrastructure, and Agentic AI, I help customers design modern, scalable, and secure workloads that accelerate their cloud transformation and AI initiatives. I regularly speak at major industry conferences including <strong>KubeCon + CloudNativeCon</strong>, <strong>AWS re:Invent</strong>, and <strong>AWS re:Inforce</strong>.
+        </p>
+        <p>
+          I also author workshops and technical blog posts on the official AWS Channels, covering topics from Kubernetes security to container OS fleet management.
+        </p>
+
+      </div>
+
+      <div class="about-section">
+        <h2>🛠️ Areas of Expertise</h2>
+        <div class="skill-grid">
+          {skills.map((skill) => (
+            <div class="skill-card">
+              <span class="skill-icon">{skill.icon}</span>
+              <span class="skill-name">{skill.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+</BaseLayout>

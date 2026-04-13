@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Gemma 4 on Amazon EKS Auto Mode',
+    url: 'https://github.com/charan-amzn/gemma4-using-vllm-on-eks',
+    summary: "Deploy Google's multimodal Gemma 4 model on Amazon EKS using Auto Mode and vLLM. One Terraform apply gets you GPU-backed inference with Karpenter auto-provisioning — text and image understanding out of the box.",
+    tags: ['EKS', 'vLLM', 'GPU', 'Gemma 4'],
+    emoji: '🧠',
+  },
+  {
+    title: 'Obot on Amazon EKS',
+    url: 'https://github.com/charan-amzn/obot-eks',
+    summary: 'One-script deployment of Obot on EKS with Terraform. Spins up a full stack — VPC, EKS cluster, Aurora PostgreSQL with pgvector, S3, KMS encryption, and ALB — ready for agentic AI workflows.',
+    tags: ['EKS', 'Terraform', 'Obot', 'Agentic AI'],
+    emoji: '🤖',
+  },
+  {
+    title: 'LangChain Bedrock Weather Agent',
+    url: 'https://github.com/charan-amzn/langchain-bedrock-weather-agent',
+    summary: 'An intelligent weather assistant demonstrating agentic AI patterns. Combines AWS Bedrock (Claude), LangChain ReAct agents, OpenWeatherMap, and Langfuse observability into a conversational multi-tool agent.',
+    tags: ['LangChain', 'Bedrock', 'Agents', 'Observability'],
+    emoji: '🌤️',
+  },
+];
+---
+
+<BaseLayout title="Curiosity Corner">
+  <div class="container">
+    <div class="page-header">
+      <h1>Curiosity Corner 🔬</h1>
+      <p>Side projects and experiments — things I build to learn and explore</p>
+    </div>
+
+    <div class="project-grid">
+      {projects.map((project) => (
+        <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="project-emoji">{project.emoji}</div>
+          <h3>{project.title}</h3>
+          <p class="summary">{project.summary}</p>
+          <div class="project-tags">
+            {project.tags.map((tag) => (
+              <span class="project-tag">{tag}</span>
+            ))}
+          </div>
+          <div class="card-footer">
+            View on GitHub <span class="arrow">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+    padding-bottom: 5rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: all var(--transition);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-card:hover h3 { color: var(--accent-light); }
+
+  .project-emoji {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    transition: color var(--transition);
+  }
+
+  .project-card .summary {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .project-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--accent-light);
+    letter-spacing: 0.02em;
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const blogs = [
+  {
+    title: 'Navigating the NGINX Ingress retirement: A practical guide to migration on AWS',
+    url: 'https://aws.amazon.com/blogs/networking-and-content-delivery/navigating-the-nginx-ingress-retirement-a-practical-guide-to-migration-on-aws/',
+    date: 'Mar 2026',
+    summary: 'A practical migration guide for teams impacted by the Ingress NGINX retirement, covering planning and execution on Amazon EKS and hybrid environments.',
+    tag: 'Kubernetes',
+    tagClass: 'tag-kubernetes',
+  },
+  {
+    title: "Multi-VPC Load Balancing for Amazon EKS workloads",
+    url: 'https://builder.aws.com/content/2y3YzOUQ9tX7b531Ct0J7aFVCvS/multi-vpc-load-balancing-for-amazon-eks-workloads',
+    date: 'Jul 2025',
+    summary: "Practical walkthrough to achieve enhanced security isolation, network segmentation, and more flexible network design.",
+    tag: 'EKS',
+    tagClass: 'tag-eks',
+  },
+  {
+    title: "Enhancing Developer Productivity: Finch's Support for Dev Containers and the Finch Daemon",
+    url: 'https://aws.amazon.com/blogs/opensource/enhancing-developer-productivity-finchs-support-for-development-containers-and-the-finch-daemon/',
+    date: 'Nov 2024',
+    summary: "Guide to Finch's new dev container support and the Finch Daemon, streamlining container build and run workflows.",
+    tag: 'Finch',
+    tagClass: 'tag-finch',
+  },
+  {
+    title: 'Announcing Finch on Linux for Container Development',
+    url: 'https://aws.amazon.com/blogs/opensource/announcing-finch-on-linux-for-container-development/',
+    date: 'Oct 2024',
+    summary: "Finch's Linux support announcement — build, run, and publish containers on Linux with familiar Finch commands.",
+    tag: 'Finch',
+    tagClass: 'tag-finch',
+  },
+  {
+    title: 'Unlocking Benefits with Bottlerocket: A Purpose-Built Container OS',
+    url: 'https://aws.amazon.com/blogs/containers/benefiting-from-bottlerocket-an-open-source-container-optimized-operating-system/',
+    date: 'Nov 2024',
+    summary: "Walkthrough of Bottlerocket's fleet management capabilities and the key pillars supporting its development plan.",
+    tag: 'Bottlerocket',
+    tagClass: 'tag-bottlerocket',
+  },
+  {
+    title: "Cordial's journey implementing Bottlerocket and Karpenter in Amazon EKS",
+    url: 'https://aws.amazon.com/blogs/containers/cordials-journey-implementing-bottlerocket-and-karpenter-in-amazon-eks/',
+    date: 'Aug 2024',
+    summary: "Case study of Cordial's implementation of Bottlerocket and Karpenter in Amazon EKS to streamline operations.",
+    tag: 'EKS',
+    tagClass: 'tag-eks',
+  },
+  {
+    title: 'Proactive scaling of Amazon ECS services using ECS Service Connect Metrics',
+    url: 'https://aws.amazon.com/blogs/containers/proactive-scaling-of-amazon-ecs-services-using-amazon-ecs-service-connect-metrics/',
+    date: 'Jun 2024',
+    summary: 'Leveraging Amazon ECS Service Connect metrics for proactive scaling of ECS services.',
+    tag: 'ECS',
+    tagClass: 'tag-ecs',
+  },
+  {
+    title: 'Multi-account infrastructure provisioning with AWS Control Tower and AWS Proton',
+    url: 'https://aws.amazon.com/blogs/containers/multi-account-infrastructure-provisioning-with-aws-control-tower-and-aws-proton/',
+    date: 'Aug 2023',
+    summary: 'Using AWS Control Tower and AWS Proton for multi-account infrastructure provisioning with centralized control.',
+    tag: 'Infrastructure',
+    tagClass: 'tag-infrastructure',
+  },
+  {
+    title: 'Security features of Bottlerocket, an open source Linux-based operating system',
+    url: 'https://aws.amazon.com/blogs/containers/security-features-of-bottlerocket-an-open-source-linux-based-operating-system/',
+    date: 'Sep 2021',
+    summary: "Exploration of Bottlerocket's security features and built-in controls for secure container environments.",
+    tag: 'Bottlerocket',
+    tagClass: 'tag-bottlerocket',
+  },
+  {
+    title: 'How to automate Puppet manifest testing and delivery in AWS OpsWorks',
+    url: 'https://aws.amazon.com/blogs/mt/how-to-automate-puppet-manifest-testing-and-delivery-in-aws-opsworks-for-puppet-enterprise/',
+    date: 'Oct 2018',
+    summary: 'Setting up CI/CD for Puppet manifests using CloudFormation, CodeCommit, CodeBuild, CodePipeline, and Systems Manager.',
+    tag: 'CI/CD',
+    tagClass: 'tag-cicd',
+  },
+];
+---
+
+<BaseLayout title="Blogs">
+  <div class="container">
+    <div class="page-header">
+      <h1>Blog Posts <span class="count">{blogs.length}</span></h1>
+      <p>Technical articles published on the official AWS blogs</p>
+    </div>
+
+    <div class="card-list">
+      {blogs.map((blog) => (
+        <a href={blog.url} target="_blank" rel="noopener noreferrer" class="content-card">
+          <div class="meta">
+            <span class={`tag ${blog.tagClass}`}>{blog.tag}</span>
+            <span class="date">{blog.date}</span>
+          </div>
+          <h3>{blog.title}</h3>
+          <p class="summary">{blog.summary}</p>
+          <div class="card-footer">
+            Read on AWS Blog <span class="arrow">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

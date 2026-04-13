@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Sr. Specialist Solutions Architect @ AWS
+      </div>
+      <h1>
+        Hi, I'm <span class="gradient">Sai Charan Teja</span>
+      </h1>
+      <p class="hero-subtitle"></p>
+      <div class="hero-actions">
+        <a href="/blogs/" class="btn btn-primary">📝 Read my Blogs</a>
+        <a href="/talks/" class="btn btn-ghost">🎤 Watch my Talks</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card" style="--card-accent: var(--cyan);">
+          <div class="feature-icon" style="--icon-bg: rgba(6, 182, 212, 0.15);">☁️</div>
+          <h3>Cloud & AI Enthusiast</h3>
+          <p>From containers to AI infrastructure on AWS. EKS, ECS, Fargate, Bottlerocket — if it runs in a container or needs GPU orchestration, I've probably architected a solution around it. 🚀</p>
+        </div>
+        <div class="feature-card" style="--card-accent: var(--pink);">
+          <div class="feature-icon" style="--icon-bg: rgba(236, 72, 153, 0.15);">💡</div>
+          <h3>Thought Leader</h3>
+          <p>Published on the official AWS blogs and a regular speaker at KubeCon &amp; re:Invent. Because knowledge grows when shared! 📚</p>
+        </div>
+        <div class="feature-card" style="--card-accent: var(--green);">
+          <div class="feature-icon" style="--icon-bg: rgba(34, 197, 94, 0.15);">🎯</div>
+          <h3>Problem Solver</h3>
+          <p>I help customers avoid the mistakes I've seen, so they can make entirely new and creative ones instead. From threat modeling to fleet management. 🔒</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
