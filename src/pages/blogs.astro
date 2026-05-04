@@ -1,7 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const substackProfile = 'https://sgopaluni.substack.com/';
+
+const featuredSubstack = {
+  title: 'Why I Stopped Thinking About AI Infrastructure as "Just GPUs"',
+  url: 'https://sgopaluni.substack.com/p/why-i-stopped-thinking-about-ai-infrastructure',
+  date: 'May 2026',
+  excerpt:
+    "AI infrastructure has evolved past stacking GPUs. As workloads shift from chatbots to agents, success means balancing three coordinated pools — accelerators for tensor math, CPUs for orchestration logic, and DPUs for networking — tuned to whether you're training, prefilling, or decoding.",
+};
+
 const blogs = [
+  {
+    title: 'Deloitte optimizes EKS environment provisioning and achieves 89% faster testing environments using Amazon EKS and vCluster',
+    url: 'https://aws.amazon.com/blogs/architecture/deloitte-optimizes-eks-environment-provisioning-and-achieves-89-faster-testing-environments-using-amazon-eks-and-vcluster/',
+    date: 'Apr 2026',
+    summary: 'Case study on how Deloitte combined Amazon EKS with vCluster to cut test environment provisioning from 45 minutes to under 5, freeing ~500 QA hours per year and consolidating infrastructure costs.',
+    tag: 'EKS',
+    tagClass: 'tag-eks',
+  },
+  {
+    title: 'Navigating enterprise networking challenges with Amazon EKS Auto Mode',
+    url: 'https://aws.amazon.com/blogs/containers/navigating-enterprise-networking-challenges-with-amazon-eks-auto-mode/',
+    date: 'Apr 2026',
+    summary: 'How EKS Auto Mode tackles enterprise Kubernetes networking — VPC CNI optimization, pod density, eBPF-based network policies, and hybrid connectivity at scale.',
+    tag: 'EKS',
+    tagClass: 'tag-eks',
+  },
   {
     title: 'Navigating the NGINX Ingress retirement: A practical guide to migration on AWS',
     url: 'https://aws.amazon.com/blogs/networking-and-content-delivery/navigating-the-nginx-ingress-retirement-a-practical-guide-to-migration-on-aws/',
@@ -89,8 +115,22 @@ const blogs = [
   <div class="container">
     <div class="page-header">
       <h1>Blog Posts <span class="count">{blogs.length}</span></h1>
-      <p>Technical articles published on the official AWS blogs</p>
+      <p>Technical articles on the official AWS blogs and personal writing on Substack</p>
     </div>
+
+    <section class="featured-snippet" aria-label="Latest from Substack">
+      <div class="featured-meta">
+        <span class="tag tag-substack">Substack</span>
+        <span class="date">{featuredSubstack.date}</span>
+        <span class="featured-label">Latest essay</span>
+      </div>
+      <h2><a href={featuredSubstack.url} target="_blank" rel="noopener noreferrer">{featuredSubstack.title}</a></h2>
+      <p class="featured-excerpt">{featuredSubstack.excerpt}</p>
+      <div class="featured-actions">
+        <a href={featuredSubstack.url} target="_blank" rel="noopener noreferrer">Read on Substack →</a>
+        <a href={substackProfile} target="_blank" rel="noopener noreferrer">Follow for future articles ↗</a>
+      </div>
+    </section>
 
     <div class="card-list">
       {blogs.map((blog) => (

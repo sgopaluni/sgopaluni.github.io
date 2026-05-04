@@ -20,6 +20,10 @@
   --yellow: #eab308;
   --border: #27272a;
   --border-hover: #3f3f46;
+  --nav-bg: rgba(10, 10, 10, 0.8);
+  --nav-bg-mobile: rgba(10, 10, 10, 0.95);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --shadow-card-soft: 0 8px 30px rgba(0, 0, 0, 0.25);
   --radius: 16px;
   --radius-sm: 10px;
   --font: 'Inter', system-ui, -apple-system, sans-serif;
@@ -27,6 +31,38 @@
   --max-w: 1100px;
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+:root[data-theme="light"] {
+  --bg: #fafafa;
+  --bg-subtle: #f4f4f5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9fafb;
+  --text: #18181b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+  --accent: #4f46e5;
+  --accent-light: #4338ca;
+  --accent-glow: rgba(79, 70, 229, 0.12);
+  --border: #e4e4e7;
+  --border-hover: #c7c7cc;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-bg-mobile: rgba(255, 255, 255, 0.97);
+  --shadow-card: 0 6px 24px rgba(24, 24, 27, 0.08);
+  --shadow-card-soft: 0 6px 24px rgba(24, 24, 27, 0.06);
+}
+
+[data-theme="light"] .tag-kubernetes { color: #2563eb; }
+[data-theme="light"] .tag-finch { color: #16a34a; }
+[data-theme="light"] .tag-bottlerocket { color: #c2410c; }
+[data-theme="light"] .tag-eks { color: #4338ca; }
+[data-theme="light"] .tag-ecs { color: #0e7490; }
+[data-theme="light"] .tag-infrastructure { color: #a16207; }
+[data-theme="light"] .tag-cicd { color: #be185d; }
+[data-theme="light"] .tag-kubecon { color: #2563eb; }
+[data-theme="light"] .tag-reinvent { color: #c2410c; }
+[data-theme="light"] .tag-reinforce { color: #16a34a; }
+[data-theme="light"] .tag-opinion { color: #7e22ce; }
+[data-theme="light"] .tag-substack { color: #c2410c; }
 
 /* ===== Reset ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +92,7 @@ ul { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 10, 10, 0.8);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid var(--border);
 }
@@ -64,9 +100,41 @@ ul { list-style: none; }
 .nav-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
   height: 64px;
 }
+
+.nav-brand { margin-right: auto; }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+  background: var(--bg-card);
+}
+
+.theme-toggle .theme-icon-moon { display: none; }
+[data-theme="light"] .theme-toggle .theme-icon-sun { display: none; }
+[data-theme="light"] .theme-toggle .theme-icon-moon { display: block; }
 
 .nav-brand {
   font-size: 1.2rem;
@@ -127,7 +195,7 @@ ul { list-style: none; }
     left: 0;
     right: 0;
     flex-direction: column;
-    background: rgba(10, 10, 10, 0.95);
+    background: var(--nav-bg-mobile);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     padding: 0.75rem;
@@ -288,7 +356,7 @@ ul { list-style: none; }
 .feature-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-card);
 }
 
 .feature-card:hover::before { opacity: 1; }
@@ -370,7 +438,7 @@ ul { list-style: none; }
 .content-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-card-soft);
 }
 
 .content-card .meta {
@@ -402,6 +470,7 @@ ul { list-style: none; }
 .tag-reinvent { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
 .tag-reinforce { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
 .tag-opinion { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+.tag-substack { background: rgba(255, 103, 25, 0.15); color: #ff8c5a; }
 
 .date {
   font-size: 0.8rem;
@@ -443,6 +512,78 @@ ul { list-style: none; }
 .content-card:hover .card-footer .arrow {
   transform: translateX(4px);
 }
+
+/* ===== Featured Substack snippet ===== */
+.featured-snippet {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid #ff6719;
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: all var(--transition);
+}
+
+.featured-snippet:hover {
+  border-color: var(--border-hover);
+  border-left-color: #ff6719;
+}
+
+.featured-snippet .featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.featured-snippet .featured-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.featured-snippet h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+}
+
+.featured-snippet h2 a {
+  color: var(--text);
+  transition: color var(--transition);
+}
+
+.featured-snippet h2 a:hover { color: var(--accent-light); }
+
+.featured-snippet .featured-excerpt {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.featured-snippet .featured-actions {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 1.1rem;
+  font-size: 0.85rem;
+}
+
+.featured-snippet .featured-actions a {
+  color: var(--accent-light);
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.featured-snippet .featured-actions a:hover { color: var(--text); }
 
 /* ===== Event badge for talks ===== */
 .event-badge {
@@ -592,6 +733,24 @@ ul { list-style: none; }
 }
 
 .footer-links a:hover { color: var(--text); }
+
+.footer-links .footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.footer-links .footer-icon:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+
+.footer-links .footer-icon[aria-label="Substack"]:hover { color: #ff6719; }
+.footer-links .footer-icon[aria-label="LinkedIn"]:hover { color: #0a66c2; }
 
 /* ===== Utilities ===== */
 .sr-only {
