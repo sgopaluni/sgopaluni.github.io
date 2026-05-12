@@ -4,14 +4,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const substackProfile = 'https://sgopaluni.substack.com/';
 
 const featuredSubstack = {
-  title: 'Why I Stopped Thinking About AI Infrastructure as "Just GPUs"',
-  url: 'https://sgopaluni.substack.com/p/why-i-stopped-thinking-about-ai-infrastructure',
+  title: 'Not all "AI Chips" do the same thing',
+  url: 'https://sgopaluni.substack.com/p/not-all-ai-chips-do-the-same-thing',
   date: 'May 2026',
   excerpt:
-    "AI infrastructure has evolved past stacking GPUs. As workloads shift from chatbots to agents, success means balancing three coordinated pools — accelerators for tensor math, CPUs for orchestration logic, and DPUs for networking — tuned to whether you're training, prefilling, or decoding.",
+    "There is no universally best AI accelerator, only one whose trade-offs match your workload. A walk through eight chip families against the three walls of compute, memory capacity, and memory bandwidth: GPUs for generality, Groq's LPU for decode latency, TPUs for dense matrix ops at scale, NPUs for the edge, and DPUs for infrastructure offload.",
 };
 
 const blogs = [
+  {
+    title: 'Why I Stopped Thinking About AI Infrastructure as "Just GPUs"',
+    url: 'https://sgopaluni.substack.com/p/why-i-stopped-thinking-about-ai-infrastructure',
+    date: 'May 2026',
+    summary:
+      "AI infrastructure has evolved past stacking GPUs. As workloads shift from chatbots to agents, success means balancing three coordinated pools — accelerators for tensor math, CPUs for orchestration logic, and DPUs for networking — tuned to whether you're training, prefilling, or decoding.",
+    tag: 'Substack',
+    tagClass: 'tag-substack',
+  },
   {
     title: 'Deloitte optimizes EKS environment provisioning and achieves 89% faster testing environments using Amazon EKS and vCluster',
     url: 'https://aws.amazon.com/blogs/architecture/deloitte-optimizes-eks-environment-provisioning-and-achieves-89-faster-testing-environments-using-amazon-eks-and-vcluster/',
@@ -142,7 +151,7 @@ const blogs = [
           <h3>{blog.title}</h3>
           <p class="summary">{blog.summary}</p>
           <div class="card-footer">
-            Read on AWS Blog <span class="arrow">→</span>
+            Read on {blog.tag === 'Substack' ? 'Substack' : 'AWS Blog'} <span class="arrow">→</span>
           </div>
         </a>
       ))}

@@ -13,6 +13,21 @@ const skills = [
 
 ];
 
+const certifications = [
+  {
+    name: 'NVIDIA-Certified Associate: AI Infrastructure and Operations',
+    issuer: 'NVIDIA',
+    url: 'https://www.credly.com/badges/bbf9d17d-4445-4ed2-aadb-10d105c82a62/linked_in?t=tevmzh',
+    icon: '🟩',
+  },
+  {
+    name: 'AWS Certified AI Practitioner',
+    issuer: 'Amazon Web Services',
+    url: 'https://www.credly.com/badges/f3db6890-6c8f-4179-8b55-8925e66eb8fb/public_url',
+    icon: '🟧',
+  },
+];
+
 ---
 
 <BaseLayout title="About">
@@ -28,7 +43,7 @@ const skills = [
           I'm a <strong>Sr. Specialist Solutions Architect</strong> at <strong>Amazon Web Services</strong> with 9+ years of experience in cloud computing and distributed systems.
         </p>
         <p>
-          In my role as a subject matter expert in containers, machine learning infrastructure, and Agentic AI, I help customers design modern, scalable, and secure workloads that accelerate their cloud transformation and AI initiatives. I regularly speak at major industry conferences including <strong>KubeCon + CloudNativeCon</strong>, <strong>AWS re:Invent</strong>, and <strong>AWS re:Inforce</strong>.
+          As a subject matter expert in containers, machine learning infrastructure, and Agentic AI, I help customers design modern, scalable, and secure workloads that accelerate their cloud transformation and AI initiatives. My recent <strong>NVIDIA</strong> and <strong>AWS AI</strong> credentials sharpen the lens I bring to those conversations. I regularly speak at major industry conferences including <strong>KubeCon + CloudNativeCon</strong>, <strong>AWS re:Invent</strong>, and <strong>AWS re:Inforce</strong>.
         </p>
         <p>
           I also author workshops and technical blog posts on the official AWS Channels, covering topics from Kubernetes security to container OS fleet management.
@@ -48,7 +63,41 @@ const skills = [
         </div>
       </div>
 
-    
+      <div class="about-section">
+        <h2>🎓 Certifications</h2>
+        <div class="skill-grid">
+          {certifications.map((cert) => (
+            <a href={cert.url} target="_blank" rel="noopener noreferrer" class="skill-card cert-card">
+              <span class="skill-icon">{cert.icon}</span>
+              <span class="cert-text">
+                <span class="skill-name">{cert.name}</span>
+                <span class="cert-issuer">{cert.issuer}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+
     </div>
   </div>
 </BaseLayout>
+
+<style is:global>
+  .cert-card {
+    text-decoration: none;
+    color: inherit;
+  }
+  .cert-card:hover .skill-name { color: var(--accent-light); }
+  .cert-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .cert-issuer {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+</style>
