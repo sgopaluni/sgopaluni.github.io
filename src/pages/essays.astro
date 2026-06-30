@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const substackProfile = 'https://sgopaluni.substack.com/';
+
+const essays = [
+  {
+    title: "Why Token Price Isn't the Whole Cost",
+    url: 'https://sgopaluni.substack.com/p/why-token-price-isnt-the-whole-cost',
+    date: 'Jun 2026',
+    summary:
+      'Why inference cost is not just token pricing: latency, throughput, retries, context length, model choice, and system overhead all shape what AI actually costs to run.',
+  },
+  {
+    title: 'Knowing Whether the Model Actually Works',
+    url: 'https://sgopaluni.substack.com/p/knowing-whether-the-model-actually',
+    date: 'Jun 2026',
+    summary:
+      'A practical look at evaluation: building task-specific checks, choosing useful datasets, and measuring model changes against the production behavior that actually matters.',
+  },
+  {
+    title: 'Post-training is the new Pretraining',
+    url: 'https://sgopaluni.substack.com/p/post-training-is-the-new-pretraining',
+    date: 'Jun 2026',
+    summary:
+      'A freshly pretrained model is not completely useful to talk to. This essay walks through supervised fine-tuning, preference optimization, and reasoning RL.',
+  },
+  {
+    title: 'Prompt, Retrieve, Fine-Tune, Distill - In that order',
+    url: 'https://sgopaluni.substack.com/p/prompt-retrieve-fine-tune-distill',
+    date: 'Jun 2026',
+    summary:
+      'A practical ladder for improving AI systems: start with prompting, move to retrieval when context is missing, fine-tune when behavior must shift, and distill when smaller models need to inherit capability.',
+  },
+  {
+    title: "How Models Learn (It's Simpler Than You Think)",
+    url: 'https://sgopaluni.substack.com/p/how-models-learn-its-simpler-than',
+    date: 'May 2026',
+    summary:
+      'A clear starting point for pretraining: how models learn patterns from massive text corpora, why next-token prediction scales into useful capability, and where infrastructure bottlenecks start to matter.',
+  },
+  {
+    title: "A GPU Cluster isn't a Cluster of GPUs",
+    url: 'https://sgopaluni.substack.com/p/a-gpu-cluster-isnt-a-cluster-of-gpus',
+    date: 'May 2026',
+    summary:
+      'A thousand-GPU cluster is more than chips. The real system includes HBM, interconnect, networking, storage, power, cooling, and scheduling choices that determine whether accelerators stay fed.',
+  },
+  {
+    title: 'Chip Is the Easy Part',
+    url: 'https://sgopaluni.substack.com/p/chip-is-the-easy-part',
+    date: 'May 2026',
+    summary:
+      'Why comparing AI chips by spec sheets misses the larger architecture question: the best accelerator depends on software maturity, memory behavior, workload shape, and the system around the silicon.',
+  },
+  {
+    title: 'Not all "AI Chips" do the same thing',
+    url: 'https://sgopaluni.substack.com/p/not-all-ai-chips-do-the-same-thing',
+    date: 'May 2026',
+    summary:
+      'A tour through AI chip families and the trade-offs each one makes against compute, memory capacity, and memory bandwidth.',
+  },
+  {
+    title: 'Why I Stopped Thinking About AI Infrastructure as "Just GPUs"',
+    url: 'https://sgopaluni.substack.com/p/why-i-stopped-thinking-about-ai-infrastructure',
+    date: 'May 2026',
+    summary:
+      "AI infrastructure has evolved past stacking GPUs. Success means balancing accelerators for tensor math, CPUs for orchestration logic, and DPUs for networking.",
+  },
+];
+
+const featuredEssay = essays[0];
+const essayList = essays.slice(1);
+---
+
+<BaseLayout title="Essays">
+  <div class="container">
+    <div class="page-header">
+      <h1>Essays <span class="count">{essays.length}</span></h1>
+      <p>Weekly Substack essays on AI infrastructure, model systems, and engineering trade-offs</p>
+    </div>
+
+    <section class="featured-snippet" aria-label="Latest essay">
+      <div class="featured-meta">
+        <span class="tag tag-substack">Substack</span>
+        <span class="date">{featuredEssay.date}</span>
+        <span class="featured-label">Latest essay</span>
+      </div>
+      <h2><a href={featuredEssay.url} target="_blank" rel="noopener noreferrer">{featuredEssay.title}</a></h2>
+      <p class="featured-excerpt">{featuredEssay.summary}</p>
+      <div class="featured-actions">
+        <a href={featuredEssay.url} target="_blank" rel="noopener noreferrer">Read on Substack →</a>
+        <a href={substackProfile} target="_blank" rel="noopener noreferrer">Follow for future essays ↗</a>
+      </div>
+    </section>
+
+    <div class="card-list">
+      {essayList.map((essay) => (
+        <a href={essay.url} target="_blank" rel="noopener noreferrer" class="content-card">
+          <div class="meta">
+            <span class="tag tag-substack">Essay</span>
+            <span class="date">{essay.date}</span>
+          </div>
+          <h3>{essay.title}</h3>
+          <p class="summary">{essay.summary}</p>
+          <div class="card-footer">
+            Read on Substack <span class="arrow">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

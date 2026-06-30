@@ -1,71 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const substackProfile = 'https://sgopaluni.substack.com/';
-
-const featuredSubstack = {
-  title: 'Post-training is the new Pretraining',
-  url: 'https://sgopaluni.substack.com/p/post-training-is-the-new-pretraining',
-  date: 'Jun 2026',
-  excerpt:
-    'A freshly pretrained model is not completely useful to talk to. This piece walks through the post-training stages that bridge that gap: supervised fine-tuning, preference optimization with RLHF or DPO, and reasoning RL for verifiable tasks.',
-};
-
 const blogs = [
-  {
-    title: 'Prompt, Retrieve, Fine-Tune, Distill - In that order',
-    url: 'https://sgopaluni.substack.com/p/prompt-retrieve-fine-tune-distill',
-    date: 'Jun 2026',
-    summary:
-      'A practical ladder for improving AI systems: start with prompting, move to retrieval when context is missing, fine-tune when behavior must shift, and distill when smaller or cheaper models need to inherit capability.',
-    tag: 'Substack',
-    tagClass: 'tag-substack',
-  },
-  {
-    title: "How Models Learn (It's Simpler Than You Think)",
-    url: 'https://sgopaluni.substack.com/p/how-models-learn-its-simpler-than',
-    date: 'May 2026',
-    summary:
-      'A clear starting point for pretraining: how models learn patterns from massive text corpora, why next-token prediction scales into useful capability, and where the infrastructure bottlenecks start to matter.',
-    tag: 'Substack',
-    tagClass: 'tag-substack',
-  },
-  {
-    title: "A GPU Cluster isn't a Cluster of GPUs",
-    url: 'https://sgopaluni.substack.com/p/a-gpu-cluster-isnt-a-cluster-of-gpus',
-    date: 'May 2026',
-    summary:
-      'A thousand-GPU cluster is more than chips. The real system includes HBM, interconnect, networking, storage, power, cooling, and scheduling choices that determine whether the accelerators stay fed.',
-    tag: 'Substack',
-    tagClass: 'tag-substack',
-  },
-  {
-    title: 'Chip Is the Easy Part',
-    url: 'https://sgopaluni.substack.com/p/chip-is-the-easy-part',
-    date: 'May 2026',
-    summary:
-      'Why comparing AI chips by spec sheets misses the larger architecture question: the best accelerator depends on software maturity, memory behavior, workload shape, and the system around the silicon.',
-    tag: 'Substack',
-    tagClass: 'tag-substack',
-  },
-  {
-    title: 'Not all "AI Chips" do the same thing',
-    url: 'https://sgopaluni.substack.com/p/not-all-ai-chips-do-the-same-thing',
-    date: 'May 2026',
-    summary:
-      "A tour through eight AI chip families and the trade-offs each one makes against compute, memory capacity, and memory bandwidth: GPUs for generality, LPUs for decode latency, TPUs for dense matrix math, NPUs for edge inference, and DPUs for infrastructure offload.",
-    tag: 'Substack',
-    tagClass: 'tag-substack',
-  },
-  {
-    title: 'Why I Stopped Thinking About AI Infrastructure as "Just GPUs"',
-    url: 'https://sgopaluni.substack.com/p/why-i-stopped-thinking-about-ai-infrastructure',
-    date: 'May 2026',
-    summary:
-      "AI infrastructure has evolved past stacking GPUs. As workloads shift from chatbots to agents, success means balancing three coordinated pools — accelerators for tensor math, CPUs for orchestration logic, and DPUs for networking — tuned to whether you're training, prefilling, or decoding.",
-    tag: 'Substack',
-    tagClass: 'tag-substack',
-  },
   {
     title: 'Deloitte optimizes EKS environment provisioning and achieves 89% faster testing environments using Amazon EKS and vCluster',
     url: 'https://aws.amazon.com/blogs/architecture/deloitte-optimizes-eks-environment-provisioning-and-achieves-89-faster-testing-environments-using-amazon-eks-and-vcluster/',
@@ -169,22 +105,8 @@ const blogs = [
   <div class="container">
     <div class="page-header">
       <h1>Blog Posts <span class="count">{blogs.length}</span></h1>
-      <p>Technical articles on the official AWS blogs and personal writing on Substack</p>
+      <p>Technical articles published on official AWS and builder channels</p>
     </div>
-
-    <section class="featured-snippet" aria-label="Latest from Substack">
-      <div class="featured-meta">
-        <span class="tag tag-substack">Substack</span>
-        <span class="date">{featuredSubstack.date}</span>
-        <span class="featured-label">Latest essay</span>
-      </div>
-      <h2><a href={featuredSubstack.url} target="_blank" rel="noopener noreferrer">{featuredSubstack.title}</a></h2>
-      <p class="featured-excerpt">{featuredSubstack.excerpt}</p>
-      <div class="featured-actions">
-        <a href={featuredSubstack.url} target="_blank" rel="noopener noreferrer">Read on Substack →</a>
-        <a href={substackProfile} target="_blank" rel="noopener noreferrer">Follow for future articles ↗</a>
-      </div>
-    </section>
 
     <div class="card-list">
       {blogs.map((blog) => (
@@ -196,7 +118,7 @@ const blogs = [
           <h3>{blog.title}</h3>
           <p class="summary">{blog.summary}</p>
           <div class="card-footer">
-            Read on {blog.tag === 'Substack' ? 'Substack' : 'AWS Blog'} <span class="arrow">→</span>
+            Read article <span class="arrow">→</span>
           </div>
         </a>
       ))}
