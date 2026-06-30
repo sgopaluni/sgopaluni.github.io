@@ -4,7 +4,10 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Personal website of Sai Charan Teja Gopaluni, Sr. Specialist Solutions Architect at AWS' } = Astro.props;
+const {
+  title,
+  description = 'Personal website of Sai Charan Teja Gopaluni, Sr. Specialist SA focused on GenAI & Agentic Platforms, production AI workloads, agentic systems, and cloud-native infrastructure.',
+} = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const navItems = [
